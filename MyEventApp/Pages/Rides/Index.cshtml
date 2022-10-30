@@ -1,0 +1,69 @@
+﻿@page
+@model MyEventApp.Pages.Rides.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ride[0].RideName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ride[0].RideType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ride[0].RideDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ride[0].RideDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ride[0].RideDistance)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Ride)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RideName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RideType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RideDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RideDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RideDistance)
+                </td>
+
+                <td>
+                    @if (!User.IsInRole("PPAMembers"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.RideID">Edit</a>
+                        <a asp-page = "./Details" asp-route-id = "@item.RideID" > Details </a >
+                        <a asp-page = "./Delete" asp-route-id = "@item.RideID" > Delete </a >
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

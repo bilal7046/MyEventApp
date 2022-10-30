@@ -1,0 +1,49 @@
+﻿@page
+@model MyEventApp.Pages.Rides.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Ride</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ride.RideName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ride.RideName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ride.RideType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ride.RideType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ride.RideDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ride.RideDescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ride.RideDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ride.RideDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ride.RideDistance)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ride.RideDistance)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Ride?.RideID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
