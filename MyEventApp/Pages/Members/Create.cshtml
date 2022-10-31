@@ -48,10 +48,7 @@
                     <input class="form-check-input" asp-for="Member.PaidUp" /> @Html.DisplayNameFor(model => model.Member.PaidUp)
                 </label>
             </div>
-            <div class="form-group">
-                <label asp-for="Member.IdentityUserId" class="control-label"></label>
-                <select asp-for="Member.IdentityUserId" class ="form-control" asp-items="ViewBag.IdentityUserId"></select>
-            </div>
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

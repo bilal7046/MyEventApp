@@ -55,11 +55,17 @@
                 </td>
 
                 <td>
-                    @if (!User.IsInRole("PPAMembers"))
+                    @if (User.IsInRole("PPAMembers"))
                     {
-                        <a asp-page="./Edit" asp-route-id="@item.RideID">Edit</a>
+                       
                         <a asp-page = "./Details" asp-route-id = "@item.RideID" > Details </a >
-                        <a asp-page = "./Delete" asp-route-id = "@item.RideID" > Delete </a >
+                       
+                    }
+                    else
+                    {
+                        <a asp-page="./Details" asp-route-id="@item.RideID"> Details </a>
+                        <a asp-page="./Edit" asp-route-id="@item.RideID">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@item.RideID"> Delete </a>
                     }
 
                 </td>

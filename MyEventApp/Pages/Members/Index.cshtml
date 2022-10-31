@@ -41,38 +41,48 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Member) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RaceTechID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemberType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JoinDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaidUp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdentityUser.Id)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.MemberID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.MemberID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.MemberID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Member)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RaceTechID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JoinDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaidUp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdentityUser.Id)
+                </td>
+                <td>
+                    @if (User.IsInRole("PPAMembers"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.MemberID">Edit</a>
+
+                        <a asp-page="./Details" asp-route-id="@item.MemberID"> Details </a>
+                    }
+                    else
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.MemberID">Edit</a>
+                        <a asp-page="./Details" asp-route-id="@item.MemberID"> Details </a>
+                        <a asp-page="./Delete" asp-route-id="@item.MemberID"> Delete </a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

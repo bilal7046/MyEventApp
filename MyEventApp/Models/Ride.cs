@@ -1,4 +1,6 @@
-﻿namespace MyEventApp.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace MyEventApp.Models
 {
     public class Ride
     {
@@ -8,5 +10,7 @@
         public string RideDescription { get; set; }
         public DateTime RideDate { get; set; }
         public decimal RideDistance { get; set; }
+        public string IdentityUserId { get; set; }
+        public IdentityUser IdentityUser { get; set; }
     }
 }

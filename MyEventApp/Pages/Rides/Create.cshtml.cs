@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -26,16 +27,16 @@ namespace MyEventApp.Pages.Rides
 
         [BindProperty]
         public Ride Ride { get; set; }
-        
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
 
+            Ride.IdentityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             _context.Ride.Add(Ride);
             await _context.SaveChangesAsync();
 

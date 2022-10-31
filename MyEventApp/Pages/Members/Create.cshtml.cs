@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -21,22 +22,21 @@ namespace MyEventApp.Pages.Members
 
         public IActionResult OnGet()
         {
-        ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return Page();
         }
 
         [BindProperty]
         public Member Member { get; set; }
-        
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
-
+            Member.IdentityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             _context.Member.Add(Member);
             await _context.SaveChangesAsync();
 

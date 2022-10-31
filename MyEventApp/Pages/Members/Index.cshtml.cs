@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,10 +25,17 @@ namespace MyEventApp.Pages.Members
 
         public async Task OnGetAsync()
         {
-            if (_context.Member != null)
+            if (User.IsInRole("PPAAdministrators"))
             {
                 Member = await _context.Member
                 .Include(m => m.IdentityUser).ToListAsync();
+            }
+            else
+            {
+                Member = await _context.Member
+              .Include(m => m.IdentityUser).ToListAsync();
+                //Member = await _context.Member
+                //.Include(m => m.IdentityUser).Where(z => z.IdentityUserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).ToListAsync();
             }
         }
     }
